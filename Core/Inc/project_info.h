@@ -1,0 +1,4 @@
+#ifndef PROJECT_INFO_H
+#define PROJECT_INFO_H
+#define PROJECT_NAME "OBC_H743_Blink_Timer3_UART3_DMA_CAN_RTOS_MENU_LittleFS"
+#endif

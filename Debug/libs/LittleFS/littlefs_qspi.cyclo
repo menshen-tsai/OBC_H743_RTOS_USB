@@ -1,0 +1,6 @@
+../libs/LittleFS/littlefs_qspi.c:24:13:qspi_wait_busy	2
+../libs/LittleFS/littlefs_qspi.c:40:13:qspi_write_enable	1
+../libs/LittleFS/littlefs_qspi.c:53:5:qspi_read	2
+../libs/LittleFS/littlefs_qspi.c:85:5:qspi_prog	4
+../libs/LittleFS/littlefs_qspi.c:125:5:qspi_erase	2
+../libs/LittleFS/littlefs_qspi.c:156:5:qspi_sync	1

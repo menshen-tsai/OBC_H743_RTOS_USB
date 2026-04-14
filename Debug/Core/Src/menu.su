@@ -1,0 +1,17 @@
+../Core/Src/menu.c:92:6:menu1_option_1	16	static
+../Core/Src/menu.c:106:6:menu1_option_2	24	static
+../Core/Src/menu.c:123:6:menu1_option_3	24	static
+../Core/Src/menu.c:140:6:menu1_option_4	64	static
+../Core/Src/menu.c:157:6:menu1_option_5	272	static
+../Core/Src/menu.c:176:6:menu1_option_6	16	static
+../Core/Src/menu.c:190:6:menu1_option_7	280	static
+../Core/Src/menu.c:216:6:menu1_option_8	16	static
+../Core/Src/menu.c:226:6:menu2_option_9	536	static
+../Core/Src/menu.c:244:6:menu2_option_10	280	static
+../Core/Src/menu.c:258:6:menu2_option_11	16	static
+../Core/Src/menu.c:271:6:menu2_option_12	16	static
+../Core/Src/menu.c:278:6:menu2_option_13	336	static
+../Core/Src/menu.c:320:6:menu2_option_14	40	static
+../Core/Src/menu.c:343:6:menu1_exit	8	static
+../Core/Src/menu.c:349:6:run_menu1	96	static
+../Core/Src/menu.c:376:6:run_menu2	96	static

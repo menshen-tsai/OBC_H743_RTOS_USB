@@ -1,0 +1,17 @@
+../Core/Src/menu.c:92:6:menu1_option_1	3
+../Core/Src/menu.c:106:6:menu1_option_2	3
+../Core/Src/menu.c:123:6:menu1_option_3	3
+../Core/Src/menu.c:140:6:menu1_option_4	3
+../Core/Src/menu.c:157:6:menu1_option_5	2
+../Core/Src/menu.c:176:6:menu1_option_6	2
+../Core/Src/menu.c:190:6:menu1_option_7	4
+../Core/Src/menu.c:216:6:menu1_option_8	2
+../Core/Src/menu.c:226:6:menu2_option_9	1
+../Core/Src/menu.c:244:6:menu2_option_10	2
+../Core/Src/menu.c:258:6:menu2_option_11	1
+../Core/Src/menu.c:271:6:menu2_option_12	1
+../Core/Src/menu.c:278:6:menu2_option_13	6
+../Core/Src/menu.c:320:6:menu2_option_14	3
+../Core/Src/menu.c:343:6:menu1_exit	1
+../Core/Src/menu.c:349:6:run_menu1	5
+../Core/Src/menu.c:376:6:run_menu2	5
