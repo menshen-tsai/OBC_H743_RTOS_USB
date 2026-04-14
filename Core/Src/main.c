@@ -16,25 +16,11 @@
   ******************************************************************************
   */
 
-// Change Heap size in FLASH.ld and RAM.ld to 0x600
-// To transmit through USB, call CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
-// To receive, modify  CDC_Receive_FS in usbd_cdc_if.c,
+// Change Log:
 //
-// static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
-// {
-//   /* USER CODE BEGIN 6 */
+// 2026/04/14
+//   Change Heap size in FLASH.ld and RAM.ld to 0x600
 
-  // Example: Echo the data back to the PC
-//   CDC_Transmit_FS(Buf, *Len);
-
-  // Or: Set a flag to process this buffer in your main loop
-  // My_Custom_Receive_Handler(Buf, *Len);
-
-//   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, Buf);
-//   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-//   return (USBD_OK);
-//   /* USER CODE END 6 */
-// }
 
 
 /* USER CODE END Header */
