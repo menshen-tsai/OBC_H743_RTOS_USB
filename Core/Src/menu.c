@@ -347,43 +347,85 @@ void menu1_exit(void) {
 
 // Main menu loop
 void run_menu1(void) {
-    char input[8];
-    while (1) {
-        printf("\r\n=== W25Q128 Menu ===\r\n");
-        for (size_t i = 0; i < MENU1_COUNT; i++) {
-            char buf[64];
-            snprintf(buf, sizeof(buf), "%d) %s\r\n", (int)(i + 1), menu1[i].name);
-            printf("%s", buf);
-        }
-        printf("Select option: ");
+  char input[8];
+  int choice;
 
-        scanf("%s", input);
-        printf("%s\n\r", input);
-        int choice = atoi(input);
-
-        if (choice >= 1 && choice <= MENU1_COUNT) {
-            menu1[choice - 1].handler();
-            if (choice == MENU1_COUNT)
-            	break;
-        } else {
-            printf("Invalid choice. Try again.\r\n");
-        }
+  while (1) {
+    printf("\r\n=== W25Q128 Menu ===\r\n");
+    for (size_t i = 0; i < MENU1_COUNT; i++) {
+      char buf[64];
+      snprintf(buf, sizeof(buf), "%d) %s\r\n", (int)(i + 1), menu1[i].name);
+      printf("%s", buf);
     }
+    printf("Select option (timeout 10 Secs) : ");
+
+    int incoming = get_char_with_timeout(10000) ;
+
+    if (incoming == -2) {
+      choice = MENU1_COUNT;
+      printf("\n\rInput timeout, quit menu\n\r");
+    }
+    else if (incoming != -1) {
+      input[0] = incoming;
+      input[1] = '\0';
+
+      printf("%s\n\r", input);
+      choice = atoi(input);
+    }
+
+   	if (choice >= 1 && choice <= MENU1_COUNT) {
+      menu1[choice - 1].handler();
+      if (choice == MENU1_COUNT) {
+      	break;
+      } else {
+    	  if (choice < 1 && choice > MENU1_COUNT) {
+            printf("Invalid choice. Try again.\r\n");
+    	  }
+      }
+    }
+  }
 }
+
 
 
 // Main menu loop
 void run_menu2(void) {
-    char input[8];
-    while (1) {
-        printf("\r\n=== LittleFS Menu ===\r\n");
-        for (size_t i = 0; i < MENU2_COUNT; i++) {
-            char buf[64];
-            snprintf(buf, sizeof(buf), "%d) %s\r\n", (int)(i + 1), menu2[i].name);
-            printf("%s", buf);
-        }
-        printf("Select option: ");
+  char input[8];
+  int choice;
+  while (1) {
+    printf("\r\n=== LittleFS Menu ===\r\n");
+    for (size_t i = 0; i < MENU2_COUNT; i++) {
+      char buf[64];
+      snprintf(buf, sizeof(buf), "%d) %s\r\n", (int)(i + 1), menu2[i].name);
+      printf("%s", buf);
+    }
+    printf("Select option: ");
 
+    int incoming = get_char_with_timeout(10000) ;
+
+    if (incoming == -2) {
+      choice = MENU2_COUNT;
+      printf("\n\rInput timeout, quit menu\n\r");
+    }
+    else if (incoming != -1) {
+      input[0] = incoming;
+      input[1] = '\0';
+
+      printf("%s\n\r", input);
+      choice = atoi(input);
+    }
+
+   	if (choice >= 1 && choice <= MENU2_COUNT) {
+      menu2[choice - 1].handler();
+      if (choice == MENU2_COUNT) {
+    	break;
+      } else {
+        if (choice < 1 && choice > MENU2_COUNT) {
+          printf("Invalid choice. Try again.\r\n");
+        }
+      }
+    }
+#if 0
         scanf("%s", input);
         printf("%s\n\r", input);
         int choice = atoi(input);
@@ -395,6 +437,7 @@ void run_menu2(void) {
         } else {
             printf("Invalid choice. Try again.\r\n");
         }
+#endif
     }
 }
 

@@ -30,3 +30,69 @@ int dma_scanf_getc_blocking(){
     dma_printf_putc(c);
     return c;
 }
+
+
+int dma_scanf_getc_nonblocking(void) {
+    // 1. Sync the software write pointer with the current DMA hardware position
+    uint16_t hardware_pos = (uint16_t)(dsi.rx_ring.buf_size - __HAL_DMA_GET_COUNTER(dsi.huart->hdmarx));
+    dma_ring_set_w_ptr(&dsi.rx_ring, hardware_pos);
+
+    // 2. Check if there is anything to read
+    if (dma_ring_available(&dsi.rx_ring) == 0) {
+        return -1; // Return -1 (EOF) to indicate no data available
+    }
+
+    // 3. Data exists! Extract the character
+    uint8_t c;
+    dma_ring_getc(&dsi.rx_ring, &c);
+
+    // Optional: Echo back to terminal
+    // dma_printf_putc(c);
+
+    return (int)c;
+}
+
+
+/**
+ * @brief Non-blocking character fetch from DMA Ring Buffer
+ * @return Character (0-255) if available, -1 if buffer is empty
+ */
+int dma_getc_nonblocking(void) {
+    // 1. Sync the hardware state to our software w_ptr
+    // NDTR is a down-counter (Size -> 0)
+    uint16_t current_ndtr = (uint16_t)__HAL_DMA_GET_COUNTER(dsi.huart->hdmarx);
+    dsi.rx_ring.w_ptr = (uint16_t)(dsi.rx_ring.buf_size - current_ndtr);
+
+    // 2. Check if there's new data to read
+    if (dsi.rx_ring.r_ptr == dsi.rx_ring.w_ptr) {
+        return -1; // Buffer is empty
+    }
+
+    // 3. F7 Cache Maintenance (Mandatory for STM32F767/753)
+    // Ensure the CPU reads from RAM, not the stale Cache
+    SCB_InvalidateDCache_by_Addr((uint32_t *)&dsi.rx_ring.buf[dsi.rx_ring.r_ptr], 1);
+
+    // 4. Extract the character
+    uint8_t c = dsi.rx_ring.buf[dsi.rx_ring.r_ptr];
+
+    // 5. Update the Read Pointer with wrap-around
+    dsi.rx_ring.r_ptr = (uint16_t)((dsi.rx_ring.r_ptr + 1) % dsi.rx_ring.buf_size);
+
+    return (int)c;
+}
+
+int get_char_with_timeout(uint32_t timeout_ms) {
+    uint32_t start_tick = HAL_GetTick();
+
+    while ((HAL_GetTick() - start_tick) < timeout_ms) {
+        int c = dma_getc_nonblocking(); // Your non-blocking function
+
+        if (c != -1) {
+            return c; // Key pressed! Return it immediately
+        }
+
+        // Optional: Feed a watchdog here if you have one enabled
+    }
+
+    return -2; // Custom code indicating a timeout occurred
+}

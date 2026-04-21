@@ -15,4 +15,7 @@ struct dma_scanf_info {
 void dma_scanf_init(UART_HandleTypeDef *scanf_huart);
 int dma_scanf_getc_blocking();
 
+int dma_scanf_getc_nonblocking(void);
+int dma_getc_nonblocking(void) ;
+int get_char_with_timeout(uint32_t timeout_ms) ;
 #endif //HAL_DMA_PRINTF_DMA_SCANF_H

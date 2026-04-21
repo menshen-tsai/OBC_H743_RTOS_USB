@@ -1,2 +1,5 @@
 ../Core/Src/dma_scanf.c:12:6:dma_scanf_init	16	static
 ../Core/Src/dma_scanf.c:20:5:dma_scanf_getc_blocking	16	static
+../Core/Src/dma_scanf.c:35:5:dma_scanf_getc_nonblocking	16	static
+../Core/Src/dma_scanf.c:60:5:dma_getc_nonblocking	32	static,ignoring_inline_asm
+../Core/Src/dma_scanf.c:84:5:get_char_with_timeout	24	static

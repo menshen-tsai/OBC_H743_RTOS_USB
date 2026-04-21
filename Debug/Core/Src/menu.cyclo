@@ -13,5 +13,5 @@
 ../Core/Src/menu.c:278:6:menu2_option_13	6
 ../Core/Src/menu.c:320:6:menu2_option_14	3
 ../Core/Src/menu.c:343:6:menu1_exit	1
-../Core/Src/menu.c:349:6:run_menu1	5
-../Core/Src/menu.c:376:6:run_menu2	5
+../Core/Src/menu.c:349:6:run_menu1	9
+../Core/Src/menu.c:392:6:run_menu2	9
